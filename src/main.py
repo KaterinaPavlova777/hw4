@@ -64,11 +64,11 @@ class Category:
         Category.product_count += 1
 
     @property
-    def list_of_products(self) -> str:
+    def products(self) -> str:
         """
         Метод для вывода списка товаров.
         """
         products_str = ""
         for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт. "
+            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return products_str
