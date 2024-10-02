@@ -7,7 +7,8 @@ from src.main import Category, LawnGrass, Product, Smartphone
 
 @pytest.fixture
 def product_samsung() -> Product:
-    return Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    return Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера",
+                   180000.0, 5)
 
 
 def test_product(product_samsung: Product) -> None:
@@ -19,7 +20,8 @@ def test_product(product_samsung: Product) -> None:
 
 @pytest.fixture
 def category_smartphone() -> Category:
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера",
+                       180000.0, 5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     return Category("Electronics", "Electronic device", [product1, product2])
 
@@ -58,13 +60,15 @@ def test_price_setter() -> None:
 
 
 def test_category_add() -> None:
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера",
+                       180000.0, 5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 
     category1 = Category(
         "Смартфоны",
-        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций "
+        "для удобства жизни",
         [product1, product2, product3],
     )
     assert category1.product_count == 5
@@ -74,19 +78,22 @@ def test_category_add() -> None:
 
 
 def test_category_str() -> None:
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0,
+                       5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
     category1 = Category(
         "Смартфоны",
-        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций"
+        " для удобства жизни",
         [product1, product2, product3],
     )
     assert str(category1) == "Смартфоны, количество продуктов: 27 шт."
 
 
 def test_product_str() -> None:
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0,
+                       5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 
     assert str(product1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
@@ -94,7 +101,8 @@ def test_product_str() -> None:
 
 
 def test_product_add() -> None:
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0,
+                       5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 
     assert (product1.price * product1.quantity) + (product2.price * product2.quantity) == 2580000
@@ -103,23 +111,27 @@ def test_product_add() -> None:
 @pytest.fixture
 def smartphone1() -> Smartphone:
     return Smartphone(
-        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера",
+        180000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
     )
 
 
 @pytest.fixture
 def smartphone2() -> Smartphone:
-    return Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
+    return Smartphone("Iphone 15", "512GB, Gray space", 210000.0,
+                      8, 98.2, "15", 512, "Gray space")
 
 
 @pytest.fixture
 def lawn_grass1() -> LawnGrass:
-    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0,
+                     20, "Россия", "7 дней", "Зеленый")
 
 
 @pytest.fixture
 def lawn_grass2() -> LawnGrass:
-    return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+    return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0,
+                     15, "США", "5 дней", "Темно-зеленый")
 
 
 def test_add_smartphone(category_smartphone: Any, smartphone1: Smartphone) -> None:

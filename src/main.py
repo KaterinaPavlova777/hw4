@@ -19,10 +19,9 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: "Product") -> float:
-        if isinstance(other, self.__class__):
-            return self.__price * self.quantity + other.__price * other.quantity
-        else:
+        if type(self) is not type(other):
             raise TypeError
+        return self.__price * self.quantity + other.__price * other.quantity
 
     @classmethod
     def new_product(cls, dict_products: dict) -> Any:
@@ -94,15 +93,15 @@ class Category:
 
 class Smartphone(Product):
     def __init__(
-        self,
-        name: str,
-        description: str,
-        price: float,
-        quantity: int,
-        efficiency: float,
-        model: str,
-        memory: int,
-        color: str,
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            efficiency: float,
+            model: str,
+            memory: int,
+            color: str,
     ):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -113,14 +112,14 @@ class Smartphone(Product):
 
 class LawnGrass(Product):
     def __init__(
-        self,
-        name: str,
-        description: str,
-        price: float,
-        quantity: int,
-        country: str,
-        germination_period: str,
-        color: str,
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            country: str,
+            germination_period: str,
+            color: str,
     ):
         super().__init__(name, description, price, quantity)
         self.country = country
