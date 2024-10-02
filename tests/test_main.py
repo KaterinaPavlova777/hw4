@@ -1,6 +1,8 @@
+from typing import Any
+
 import pytest
 
-from src.main import Category, Product
+from src.main import Category, LawnGrass, Product, Smartphone
 
 
 @pytest.fixture
@@ -96,3 +98,56 @@ def test_product_add() -> None:
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 
     assert (product1.price * product1.quantity) + (product2.price * product2.quantity) == 2580000
+
+
+@pytest.fixture
+def smartphone1() -> Smartphone:
+    return Smartphone(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
+    )
+
+
+@pytest.fixture
+def smartphone2() -> Smartphone:
+    return Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
+
+
+@pytest.fixture
+def lawn_grass1() -> LawnGrass:
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+
+@pytest.fixture
+def lawn_grass2() -> LawnGrass:
+    return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+
+def test_add_smartphone(category_smartphone: Any, smartphone1: Smartphone) -> None:
+    category_smartphone.add_product = smartphone1
+
+
+def test_add_error(category_smartphone: Any) -> None:
+    with pytest.raises(TypeError):
+        category_smartphone.add_product(1)
+
+
+def test_lawn_grass(lawn_grass1: Any, lawn_grass2: Any) -> None:
+    assert lawn_grass1.name == "Газонная трава"
+    assert lawn_grass1.description == "Элитная трава для газона"
+    assert lawn_grass1.price == 500.0
+    assert lawn_grass1.quantity == 20
+    assert lawn_grass1.country == "Россия"
+    assert lawn_grass1.germination_period == "7 дней"
+    assert lawn_grass1.color == "Зеленый"
+
+    assert lawn_grass2.name == "Газонная трава 2"
+    assert lawn_grass2.description == "Выносливая трава"
+    assert lawn_grass2.price == 450.0
+    assert lawn_grass2.quantity == 15
+    assert lawn_grass2.country == "США"
+    assert lawn_grass2.germination_period == "5 дней"
+    assert lawn_grass2.color == "Темно-зеленый"
+
+
+def test_add_lawn_grass(lawn_grass1: Any, lawn_grass2: Any) -> None:
+    assert lawn_grass1 + lawn_grass2 == 16750.0
