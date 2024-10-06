@@ -2,7 +2,7 @@ from typing import Any
 
 import pytest
 
-from src.main import Category, LawnGrass, Product, Smartphone
+from src.classes import Category, LawnGrass, Product, Smartphone
 
 
 @pytest.fixture
