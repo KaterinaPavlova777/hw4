@@ -187,3 +187,21 @@ def test_print_mixin(capsys: Any) -> None:
               "7 дней", "Зеленый")
     message = capsys.readouterr()
     assert message.out.strip() == "LawnGrass(Газонная трава, Элитная трава для газона, 500.0, 20)"
+
+
+@pytest.fixture
+def without_product() -> list:
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0,
+                       5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    return [product1, product2, product3]
+
+
+def test_middle_price(without_product: Any) -> None:
+    category1 = Category(name="test", description="test", products=[])
+    result = category1.middle_price()
+    assert result == 0
+
+    category2 = Category(name="test", description="test", products=without_product)
+    assert category2.middle_price() == 111629.63
